@@ -1,0 +1,38 @@
+{
+  "name": "client",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "standard --fix"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@hookform/error-message": "^2.0.0",
+    "@hookform/resolvers": "^2.8.3",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/material": "^5.2.1",
+    "@mui/styled-engine-sc": "^5.1.0",
+    "@nextui-org/react": "^1.0.2-beta.4",
+    "@react-google-maps/api": "^2.7.0",
+    "axios": "^0.24.0",
+    "moment": "^2.29.4",
+    "next": "12.0.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.2.2",
+    "react-hook-form": "^7.20.2",
+    "react-modal": "^3.14.4",
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.2",
+    "eslint": "7",
+    "eslint-config-next": "12.0.4"
+  }
+}

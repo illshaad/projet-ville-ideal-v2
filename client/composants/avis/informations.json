@@ -1,0 +1,56 @@
+[
+  {
+    "titre": "Environnement",
+    "name": "environement",
+    "info": "Qualité de l'air. Gestion des déchets. Parcs, espaces verts.Paysage naturel. Nuisances : visuelles, sonores ou olfactives.Pollution.",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Transports",
+    "name": "transports",
+    "info": "Réseau transports en commun : car, bus, métro, tramway. Stations de taxis. Gare. Pistes cyclables. Aéroport... Embouteillages!",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Securité",
+    "name": "security",
+    "info": "Commissariat de police. Gendarmerie. Police municipale. Niveau de délinquance. Cambriolages. Trafics. Vols. Sécurité routière.",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Santé",
+    "name": "health",
+    "info": "Hôpital. Médecins, spécialistes. Maison de retraite. Laboratoire d'analyses. Maison médicale. Services à la personne.",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Sport et Loisir",
+    "name": "sportAndLeasur",
+    "info": "Stades, gymnases. Clubs de sport.. Parcours sportifs. Piscine. Associations : pour seniors, musicales, créations artistiques..",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Culture",
+    "name": "culture",
+    "info": "Cinéma, théâtre, musée, bibliothèque. Patrimoine architectural. Evénements. Associations culturelles...",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Enseignement",
+    "name": "education",
+    "info": "Lycée, collège, maternelle, faculté, école primaire, centre de formation professionnelle...",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Commerce",
+    "name": "trade",
+    "info": "Galerie marchande, supermarché, bureau de poste, commerces de proximité zone d'activité commerciale, artisans, marché...",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "titre": "Qualité de Vie",
+    "name": "qualityOfLife",
+    "info": "Globalement, le bien-être ressenti à vivre dans cette ville.C'est la note la plus importante.",
+    "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+]
