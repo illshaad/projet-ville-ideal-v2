@@ -15,8 +15,6 @@ export default function Home({ dataIleDeFrance }) {
   const status = response?.status;
   const [step, setStep] = useState(0);
 
-  // Si il y'a la donnée du back il faut afficher dans le composant ViewAllRating
-
   const nextStep = (step, data) => {
     setStep(step, data);
   };
@@ -25,8 +23,8 @@ export default function Home({ dataIleDeFrance }) {
   };
 
   const stepComponent = [
-    <ViewAllRating nextStep={nextStep} />,
-    <AddRating prevStep={prevStep} />,
+    <ViewAllRating key="0" nextStep={nextStep} />,
+    <AddRating key="1" prevStep={prevStep} />,
   ];
 
   return (
