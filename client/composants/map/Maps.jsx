@@ -65,7 +65,7 @@ export default function MapGoogle({ dataIleDeFrance }) {
 
                 return (
                   <Marker
-                    index={index}
+                    key={index}
                     position={lagLng}
                     clusterer={clusterer}
                     onClick={() => SetselectCityInfoWindows([item])}

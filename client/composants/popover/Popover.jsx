@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { FlexContainer, Card, ContainerInformation } from "../../styles/global";
 
-export default function Popover({ size, findUserNoteByCity }) {
+export default function Popover({ size, e }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const {
     education,
@@ -19,7 +19,7 @@ export default function Popover({ size, findUserNoteByCity }) {
     remarkPositive,
     remarkNegative,
     totalRating,
-  } = findUserNoteByCity[0];
+  } = e;
 
   const educationParse = parseInt(education);
   const environementParse = parseInt(environement);
@@ -140,12 +140,6 @@ export default function Popover({ size, findUserNoteByCity }) {
             <Typography>{remarkNegative}</Typography>
           </Card>
         </FlexContainer>
-        {/* <Button size="small" color="success">
-          Accepter
-        </Button>
-        <Button size="small" color="error">
-          Refuser
-        </Button> */}
       </PopoverMui>
     </div>
   );

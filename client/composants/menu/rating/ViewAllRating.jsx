@@ -20,6 +20,7 @@ export default function ViewAllRating({ nextStep }) {
     );
   }, []);
 
+  console.log(findUserNoteByCity);
   return (
     <Container>
       <br />
@@ -53,10 +54,7 @@ export default function ViewAllRating({ nextStep }) {
             <Card.Footer>
               <Row justify="center">
                 <Button flat color="secondary" size="sm">
-                  <Popover
-                    size="small"
-                    findUserNoteByCity={findUserNoteByCity}
-                  />
+                  <Popover size="small" e={e} />
                 </Button>
               </Row>
             </Card.Footer>
