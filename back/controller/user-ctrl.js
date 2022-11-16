@@ -78,6 +78,7 @@ const loginUser = async (req, res) => {
 };
 
 const middleWareAuth = (req, res, next) => {
+  console.log(req, "REQ");
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) res.status(401);

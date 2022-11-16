@@ -18,6 +18,7 @@ const ratingsSchema = mongoose.Schema({
   remarkPositive: String,
   remarkNegative: String,
   totalRating: Number,
+  status: String,
 });
 
 const dataModelRating = mongoose.model("ratings", ratingsSchema);
