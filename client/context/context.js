@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-const dataCityContext = createContext();
+const DataCityContext = createContext();
 
 export const DataCityProvider = ({ children }) => {
   const [city, setCity] = useState(null);
@@ -10,6 +10,7 @@ export const DataCityProvider = ({ children }) => {
   const [dinamiqueMarker, setDinamiqueMarker] = useState(null);
   const [selectCityInfoWindows, SetselectCityInfoWindows] = useState(null);
   const [dataInformation, setDataInformation] = useState(null);
+  const [validedRating, setValidedRating] = useState(null);
 
   const findUserNoteByCity =
     selectCityInfoWindows &&
@@ -18,7 +19,7 @@ export const DataCityProvider = ({ children }) => {
     );
 
   return (
-    <dataCityContext.Provider
+    <DataCityContext.Provider
       value={{
         city,
         setCity,
@@ -35,11 +36,13 @@ export const DataCityProvider = ({ children }) => {
         dataInformation,
         setDataInformation,
         findUserNoteByCity,
+        validedRating,
+        setValidedRating,
       }}
     >
       {children}
-    </dataCityContext.Provider>
+    </DataCityContext.Provider>
   );
 };
 
-export const useDataCity = () => useContext(dataCityContext);
+export const useDataCity = () => useContext(DataCityContext);

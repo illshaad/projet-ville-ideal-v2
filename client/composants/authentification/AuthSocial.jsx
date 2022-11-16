@@ -20,10 +20,8 @@ export default function AuthSocial() {
         clientId={process.env.NEXT_PUBLIC_AUTH_GOOGLE}
         buttonText="Connection Google"
         onSuccess={response}
-        onFailure={response}
         cookiePolicy="single_host_origin"
         icon={false}
-        //   isSignedIn={true}
       />
       <FacebookLogin
         appId={process.env.NEXT_PUBLIC_AUTH_FACEBOOK}

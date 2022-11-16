@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "@nextui-org/react";
-import { Modal, Button } from "@nextui-org/react";
 import ModalAdmin from "./ModalAdmin";
+import { useDataCity } from "../../context/context";
 
 export default function Admin({ dataInformation }) {
+  const { setValidedRating } = useDataCity();
+
   return (
     <Table
       shadow={false}
@@ -27,7 +29,7 @@ export default function Admin({ dataInformation }) {
             <Table.Cell>shaddlove5@gmail.com</Table.Cell>
             <Table.Cell>Attente</Table.Cell>
             <Table.Cell>
-              <ModalAdmin e={e} />
+              <ModalAdmin e={e} setValidedRating={setValidedRating} />
             </Table.Cell>
           </Table.Row>
         ))}

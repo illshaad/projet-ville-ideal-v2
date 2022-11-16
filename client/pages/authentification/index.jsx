@@ -14,7 +14,7 @@ export default function Authentification() {
   useEffect(() => {
     setUrl(window.location.href.split("email=")[1]);
     if (response?.token) {
-      const responseToken = redirectionJwt(response.token);
+      redirectionJwt(response.token).then((res) => console.log(res, " RES"));
     }
   }, []);
 

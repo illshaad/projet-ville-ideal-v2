@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "@nextui-org/react";
+import { updateStatus } from "../../service/api";
 
-export default function ModalAdmin({ e }) {
-  const [visible, setVisible] = React.useState(false);
+export default function ModalAdmin({ e, setValidedRating }) {
+  const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
   };
 
+  const onSubmit = (props) => {
+    props && updateStatus(props);
+    return setValidedRating({ valide: true });
+  };
+
   return (
     <div>
       <Button auto shadow onClick={handler}>
-        Traitement
+        Voir
       </Button>
       <Modal
         closeButton
@@ -37,7 +43,12 @@ export default function ModalAdmin({ e }) {
           <Button auto flat color="error" onClick={closeHandler}>
             Annuler
           </Button>
-          <Button auto onClick={closeHandler}>
+          <Button
+            onClick={() => {
+              onSubmit(e);
+              setVisible(false);
+            }}
+          >
             Accepter
           </Button>
         </Modal.Footer>

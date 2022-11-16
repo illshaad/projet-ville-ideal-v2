@@ -47,6 +47,7 @@ export default function AddRatingComposant({ prevStep }) {
         remarkPositive: remarkPositive || null,
         remarkNegative: remarkNegative || null,
         qualityOfLife: data?.qualityOfLife || null,
+        status: "pending",
       });
       setResponse(responseToFront);
       prevStep();

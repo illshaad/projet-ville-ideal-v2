@@ -1,12 +1,12 @@
 module.exports = {
-  async redirects () {
+  async redirects() {
     return [
       {
-        source: '/',
-        destination: '/authentification',
-        permanent: true
-      }
-    ]
+        source: "/",
+        destination: "/authentification",
+        permanent: true,
+      },
+    ];
   },
-  reactStrictMode: true
-}
+  reactStrictMode: true,
+};

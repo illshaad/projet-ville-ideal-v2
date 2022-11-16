@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Admin from "../../composants/admin/Admin";
-import { getInformationRatings } from "../../service/api";
+import { getInformationRatingsPending } from "../../service/api";
 
 export default function AdminPage() {
   const [dataInformation, setDataInformation] = useState(null);
 
   useEffect(() => {
-    getInformationRatings().then((res) =>
+    getInformationRatingsPending().then((res) =>
       setDataInformation(res?.data.ratings)
     );
   }, []);

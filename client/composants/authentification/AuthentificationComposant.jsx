@@ -9,13 +9,13 @@ import AuthSocial from "./AuthSocial";
 import { FormAuthentification, Perror } from "../../styles/global";
 
 const schema = yup.object().shape({
-  // pseudo: yup
-  //   .string()
-  //   .required("Le pseudo est requis")
-  //   .min(
-  //     5,
-  //     "Le mots de pseudo est trop court - il doit comporter au moins 5 caractères"
-  //   ),
+  pseudo: yup
+    .string()
+    .required("Le pseudo est requis")
+    .min(
+      5,
+      "Le mots de pseudo est trop court - il doit comporter au moins 5 caractères"
+    ),
   email: yup.string().required("L'email est requis"),
   password: yup
     .string()

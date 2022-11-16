@@ -14,6 +14,13 @@ const getInformationRatings = async () => {
   return response;
 };
 
+const getInformationRatingsPending = async () => {
+  const response = await Axios.get(
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/ratings/pending`
+  ).catch((error) => error.response);
+  return response;
+};
+
 const createRating = async (data) =>
   await Axios.post(
     `${process.env.NEXT_PUBLIC_API_BACKEND}/add-rating`,
@@ -27,9 +34,19 @@ const createUser = async (data) =>
   ).catch((error) => error.response);
 
 const loginUser = async (data) => {
-  await Axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/login`, data).catch(
-    (error) => error.response
-  );
+  const response = await Axios.post(
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/login`,
+    data
+  ).catch((error) => error.response);
+  return response;
+};
+
+const updateStatus = async (data) => {
+  const update = await Axios.put(
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/ratings/status`,
+    data
+  ).catch((error) => error.response);
+  return update;
 };
 
 const redirectionJwt = async (data) => {
@@ -46,4 +63,6 @@ export {
   loginUser,
   redirectionJwt,
   getInformationRatings,
+  updateStatus,
+  getInformationRatingsPending,
 };

@@ -7,12 +7,8 @@ import { Card, Text, Divider, Row, Button, Spacer } from "@nextui-org/react";
 import { getInformationRatings } from "../../../service/api";
 
 export default function ViewAllRating({ nextStep }) {
-  const {
-    selectCityInfoWindows,
-    dataInformation,
-    setDataInformation,
-    findUserNoteByCity,
-  } = useDataCity();
+  const { selectCityInfoWindows, setDataInformation, findUserNoteByCity } =
+    useDataCity();
 
   useEffect(() => {
     getInformationRatings().then((res) =>
@@ -20,7 +16,6 @@ export default function ViewAllRating({ nextStep }) {
     );
   }, []);
 
-  console.log(findUserNoteByCity);
   return (
     <Container>
       <br />
