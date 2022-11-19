@@ -9,7 +9,7 @@ export default function AuthSocial() {
   const response = async (response) => {
     localStorage.setItem("name", response.profileObj.name);
     setTimeout(() => {
-      if (response) router.push(`/application`);
+      if (response) router.push(`/selection`);
     }, 2000);
   };
 

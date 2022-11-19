@@ -34,7 +34,7 @@ export default function MapGoogle({ dataIleDeFrance }) {
 
   const mapStyles = {
     width: "auto",
-    height: "720px",
+    height: "100vh",
   };
 
   return (

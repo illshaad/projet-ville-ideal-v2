@@ -2,11 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Input, Spacer, Button } from "@nextui-org/react";
-import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import * as yup from "yup";
 import { Text } from "@nextui-org/react";
 import AuthSocial from "./AuthSocial";
 import { FormAuthentification, Perror } from "../../styles/global";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   pseudo: yup

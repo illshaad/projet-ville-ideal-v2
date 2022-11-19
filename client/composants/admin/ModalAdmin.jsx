@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "@nextui-org/react";
 import { updateStatus } from "../../service/api";
+import { useRouter } from "next/router";
 
 export default function ModalAdmin({ e, setValidedRating }) {
   const [visible, setVisible] = useState(false);
@@ -8,10 +9,12 @@ export default function ModalAdmin({ e, setValidedRating }) {
   const closeHandler = () => {
     setVisible(false);
   };
+  const router = useRouter();
 
   const onSubmit = (props) => {
     props && updateStatus(props);
-    return setValidedRating({ valide: true });
+    setValidedRating({ valide: true });
+    return router.push(`/application`);
   };
 
   return (

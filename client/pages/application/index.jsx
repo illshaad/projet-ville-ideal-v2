@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import Maps from "../../composants/map/Maps";
 import { getDataIleDeFrance } from "../../service/api";
 import { useDataCity } from "../../context/context";
-import Hearder from "../../composants/header/Hearder";
 import Search from "../../composants/search/Search";
 import ViewAllRating from "../../composants/menu/rating/ViewAllRating";
-import { CardHome, Menu, FlexContainerHome } from "../../styles/global";
+import {
+  CardHome,
+  Menu,
+  FlexContainerHome,
+  H1,
+  GreyArrowLeft,
+} from "../../styles/global";
 import AddRating from "../../composants/avis/AddRating";
 import Snackbar from "../../composants/snackbar/Snackbar";
+import { Text } from "@nextui-org/react";
 
 export default function Home({ dataIleDeFrance }) {
   const { response } = useDataCity();
@@ -27,12 +33,32 @@ export default function Home({ dataIleDeFrance }) {
     <AddRating key="1" prevStep={prevStep} />,
   ];
 
+  const getName = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("name");
+    }
+  };
+
   return (
     <>
       <CardHome>
-        <Hearder />
         <FlexContainerHome>
           <Menu>
+            <br />
+            <GreyArrowLeft onClick={() => prevStep()}>
+              {" "}
+              &lt; Retour
+            </GreyArrowLeft>
+            <Text
+              css={{ textAlign: " center", margin: "2rem" }}
+              size="$md"
+              weight="bold"
+            >
+              <Text color="#ff4ecd" b>
+                Bonjour
+              </Text>
+              {getName()}
+            </Text>
             <Search dataIleDeFrance={dataIleDeFrance} />
             {stepComponent[step]}
           </Menu>

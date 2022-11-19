@@ -5,6 +5,7 @@ import Popover from "../../popover/Popover";
 import { useDataCity } from "../../../context/context";
 import { Card, Text, Divider, Row, Button, Spacer } from "@nextui-org/react";
 import { getInformationRatings } from "../../../service/api";
+import { display } from "@mui/system";
 
 export default function ViewAllRating({ nextStep }) {
   const { selectCityInfoWindows, setDataInformation, findUserNoteByCity } =
@@ -17,33 +18,37 @@ export default function ViewAllRating({ nextStep }) {
   }, []);
 
   return (
-    <Container>
-      <br />
+    <Container css={{ marginTop: "2rem" }}>
       <FlexElementCard>
-        <P fontSize="15px" style={{ fontWeight: "bold" }}>
+        <Text weight="bold">
           {selectCityInfoWindows && selectCityInfoWindows[0]?.nom}
-        </P>
-        <P fontSize="15px" style={{ fontWeight: "bold" }}>
+        </Text>
+        <Text weight="bold">
           {selectCityInfoWindows && selectCityInfoWindows[0]?.departement.nom}
-        </P>
+        </Text>
       </FlexElementCard>
 
       {findUserNoteByCity?.map((e) => (
         <>
           <Card hoverable>
-            <Card.Header>
-              <Text color="secondary">Note moyenne : {e?.totalRating} </Text>
-            </Card.Header>
+            <Text
+              color="secondary"
+              weight="bold"
+              css={{ textAlign: "center", padding: "1rem" }}
+            >
+              Note moyenne - {e?.totalRating}{" "}
+            </Text>
+
             <Divider color="primary" />
-            <Card.Body css={{ py: "$10" }}>
-              <Text
-                h2
-                css={{
-                  textAlign: "center",
-                }}
-              >
-                {e.nameUser}
+            <Card.Body
+              css={{
+                py: "$10",
+              }}
+            >
+              <Text b color="#ff4ecd">
+                Noter par
               </Text>
+              <Text h2>{e.nameUser}</Text>
             </Card.Body>
             <Divider color="primary" />
             <Card.Footer>

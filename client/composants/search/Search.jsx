@@ -34,7 +34,7 @@ export default function Search({ dataIleDeFrance }) {
           <TextField
             {...params}
             label="Rechercher votre ville"
-            variant="standard"
+            variant="outlined"
           />
         )}
       />

@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useDataCity } from "../../context/context";
 import { useForm } from "react-hook-form";
 import {
-  Button,
   Card,
-  Form,
-  ContainerSelect,
-  P,
+  Text,
+  Divider,
+  Button,
   Textarea,
+  Container,
+} from "@nextui-org/react";
+
+import {
+  Form,
   GreyArrowLeft,
   GreyArrowRight,
   PinkArrowLeft,
@@ -58,12 +62,29 @@ export default function AddRatingComposant({ prevStep }) {
 
   return (
     <>
-      <GreyArrowLeft onClick={() => prevStep()}> &lt; </GreyArrowLeft>
-      <P>Vous allez noté la ville : {selectCityInfoWindows[0]?.nom} </P>
-      <P>
+      <Text
+        css={{ textAlign: "center ", marginTop: "2rem" }}
+        size="$sm"
+        weight="bold"
+        color="secondary"
+      >
+        Vous allez noter la ville :{" "}
+        <Text b color="#ff4ecd">
+          {selectCityInfoWindows[0]?.nom}
+        </Text>
+      </Text>
+      <Text
+        css={{ textAlign: "center " }}
+        size="$sm"
+        weight="bold"
+        color="secondary"
+      >
         Qui est dans le département :{" "}
-        {selectCityInfoWindows[0]?.departement.nom}
-      </P>
+        <Text b color="#ff4ecd">
+          {selectCityInfoWindows[0]?.departement.nom}
+        </Text>
+      </Text>
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FlexContainer>
           {currentIndex > 0 ? (
@@ -74,24 +95,39 @@ export default function AddRatingComposant({ prevStep }) {
             <GreyArrowLeft> &lt;</GreyArrowLeft>
           )}
           <Card>
-            <P>{[currentIndex][0] + 1} / 9</P>
-            <P color="#3197d4">{informations[currentIndex]?.titre}</P>
-            <ContainerSelect>
-              <P textAlign="justify" fontSize="15px">
-                {informations[currentIndex]?.info}
-              </P>
-            </ContainerSelect>
-            <Select
-              name={informations[currentIndex].name}
-              {...register(informations[currentIndex].name)}
+            <Card.Header
+              css={{
+                display: "flex",
+                gap: 10,
+                justifyContent: "space-between",
+              }}
             >
-              {informations[currentIndex].value.map((information, index) => (
-                <option key={`${index}-${information}`} value={information}>
-                  {information}
-                </option>
-              ))}
-            </Select>
+              <Text b color="secondary">
+                {[currentIndex][0] + 1} - 9
+              </Text>
+              <Text b color="secondary">
+                {informations[currentIndex]?.titre}
+              </Text>
+            </Card.Header>
+            <Divider />
+            <Card.Body css={{ py: "10" }}>
+              <Text color="#ff4ecd">{informations[currentIndex]?.info}</Text>
+            </Card.Body>
+            <Divider />
+            <Card.Footer css={{ display: "flex", justifyContent: "center" }}>
+              <Select
+                name={informations[currentIndex].name}
+                {...register(informations[currentIndex].name)}
+              >
+                {informations[currentIndex].value.map((information, index) => (
+                  <option key={`${index}-${information}`} value={information}>
+                    {information}
+                  </option>
+                ))}
+              </Select>
+            </Card.Footer>
           </Card>
+
           {currentIndex !== informations.length - 1 ? (
             <PinkArrowRight onClick={() => setCurrentIndex(currentIndex + 1)}>
               &gt;
@@ -113,16 +149,31 @@ export default function AddRatingComposant({ prevStep }) {
             ) : (
               <GreyArrowLeft> &lt;</GreyArrowLeft>
             )}
-            <Card padding="0px 5px ">
-              <P>{[currentIndexCommentaire][0] + 1} / 2</P>
-              <P color="#3197d4">
-                {commentaires[currentIndexCommentaire].titre}
-              </P>
-              <Textarea
-                placeholder="Noter ici votre commentaire"
-                {...register(commentaires[currentIndexCommentaire].titre)}
-              />
+
+            <Card>
+              <Card.Header
+                css={{
+                  display: "flex",
+                  gap: 10,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text b color="secondary">
+                  {[currentIndexCommentaire][0] + 1} - 2
+                </Text>
+                <Text b color="secondary">
+                  {commentaires[currentIndexCommentaire]?.titre}
+                </Text>
+              </Card.Header>
+              <Divider />
+              <Card.Body css={{ py: "10" }}>
+                <Textarea
+                  placeholder="Votre commentaire ici"
+                  {...register(commentaires[currentIndexCommentaire].titre)}
+                />
+              </Card.Body>
             </Card>
+
             {currentIndexCommentaire !== commentaires.length - 1 ? (
               <PinkArrowRight
                 onClick={() => {
@@ -138,9 +189,11 @@ export default function AddRatingComposant({ prevStep }) {
         )}
 
         {remarkPositive && remarkNegative && (
-          <Button bordered color="secondary" type="submit" auto>
-            Enregistrer
-          </Button>
+          <Container css={{ display: "flex", justifyContent: "center" }}>
+            <Button bordered color="gradient" type="submit">
+              Enregistrer
+            </Button>
+          </Container>
         )}
       </Form>
     </>

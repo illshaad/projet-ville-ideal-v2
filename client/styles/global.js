@@ -42,8 +42,8 @@ export const P = styled.p`
 `;
 
 export const ContainerSelect = styled.div`
-  margin-top: 10px;
-  width: 300px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const FlexContainer = styled.div`
@@ -117,25 +117,20 @@ export const GreyArrowLeft = styled.div`
 `;
 
 export const Header = styled.header`
-  width: auto;
-  height: 80px;
+  /* width: auto; */
+  /* height: 80px; */
   background: #758ecd;
-  margin-top: -22px;
+  /* margin-top: -22px; */
 `;
 
 export const CardHome = styled.div`
-  margin: 60px auto;
-  width: ${({ width }) => width || "1280px"};
-  height: ${({ height }) => height || "800px"};
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 1px 1px 10px 0px #000000;
-  overflow: hidden;
-  overflow-y: ${({ overflow }) => overflow || null};
+  border-radius: 5px;
 `;
 
 export const Menu = styled.div`
-  width: 500px;
+  width: 50%;
+  height: 100vh;
 `;
 
 export const H1 = styled.h1`
@@ -195,5 +190,6 @@ export const FlexElementCard = styled.div`
   display: flex;
   justify-content: center;
   align-item: center;
+  margin-bottom: 0.5rem;
   gap: 5px;
 `;
