@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Text, Divider, Button, Container } from "@nextui-org/react";
 import { useRouter } from "next/router";
 
 export default function Selection() {
   const router = useRouter();
 
-  const name = localStorage.getItem("name");
+  let name;
+  if (typeof window !== "undefined") {
+    name = localStorage.getItem("name");
+  }
 
   const myRedirection = [
     {
