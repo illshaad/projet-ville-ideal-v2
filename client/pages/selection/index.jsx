@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Text, Divider, Button, Container } from "@nextui-org/react";
 import { useRouter } from "next/router";
 
 export default function Selection() {
   const router = useRouter();
+
+  const name = localStorage.getItem("name");
 
   const myRedirection = [
     {
@@ -11,7 +13,7 @@ export default function Selection() {
       name: "Noter votre ville",
     },
     {
-      link: () => router.push(`/classement`),
+      link: () => router.push(`/city`),
       name: "Classements des villes",
     },
     {
@@ -23,15 +25,19 @@ export default function Selection() {
   return (
     <Container xs css={{ marginTop: "20%" }}>
       <Card>
-        <Card.Header>
-          <Text b color="secondary">
-            Menu
-          </Text>
-        </Card.Header>
+        <Text
+          weight="bold"
+          color="secondary"
+          css={{ textAlign: "center", padding: "1rem" }}
+        >
+          Menu
+        </Text>
+
         <Divider />
         {myRedirection.map((redirection, index) => (
-          <Card.Body css={{ py: "$20" }} key={index}>
+          <Card.Body key={index}>
             <Button
+              disabled={!name === "Shadd Love" ? index === 2 && true : false}
               onClick={redirection.link}
               shadow
               color="gradient"

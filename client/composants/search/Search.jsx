@@ -6,7 +6,7 @@ import { Container } from "@mui/material";
 export default function Search({ dataIleDeFrance }) {
   const { setDinamiqueMarker } = useDataCity();
 
-  const nameCity = dataIleDeFrance.dataAll.map((e) => {
+  const nameCity = dataIleDeFrance?.dataAll.map((e) => {
     if (e.centre) {
       return {
         label: e.nom,

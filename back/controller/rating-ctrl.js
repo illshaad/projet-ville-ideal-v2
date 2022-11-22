@@ -39,7 +39,28 @@ const createRating = async (req, res) => {
 const getRatings = async (req, res) => {
   try {
     const ratings = await Rating.find({ status: "valide" });
+    const filterByName = ratings.filter((e) => e.nameCity === "Argenteuil");
+
+    console.log(filterByName, " Filter");
     res.status(200).json({ ratings });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send("oups erreur");
+  }
+};
+
+const getTotalRatingsByCity = async (req, res) => {
+  try {
+    const ratingsByCity = await Rating.aggregate([
+      {
+        $group: {
+          _id: "$nameCity",
+          totalRating: { $avg: "$totalRating" },
+          nameDepartement: { $first: "$nameDepartement" },
+        },
+      },
+    ]);
+    res.status(200).json(ratingsByCity);
   } catch (error) {
     console.log(error.message);
     res.status(400).send("oups erreur");
@@ -67,4 +88,10 @@ const updateStatus = async (req, res) => {
   }
 };
 
-module.exports = { createRating, getRatings, updateStatus, getRatingsPending };
+module.exports = {
+  createRating,
+  getRatings,
+  updateStatus,
+  getRatingsPending,
+  getTotalRatingsByCity,
+};

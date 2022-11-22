@@ -8,18 +8,22 @@ import {
   CardHome,
   Menu,
   FlexContainerHome,
-  H1,
   GreyArrowLeft,
+  FlexContainer,
 } from "../../styles/global";
 import AddRating from "../../composants/avis/AddRating";
 import Snackbar from "../../composants/snackbar/Snackbar";
-import { Text } from "@nextui-org/react";
+import { Text, Button } from "@nextui-org/react";
+import { useRouter } from "next/router";
 
 export default function Home({ dataIleDeFrance }) {
+  const router = useRouter();
   const { response } = useDataCity();
   const message = response?.data?.message;
   const status = response?.status;
   const [step, setStep] = useState(0);
+
+  const redirection = () => router.push("/city");
 
   const nextStep = (step, data) => {
     setStep(step, data);
@@ -44,23 +48,33 @@ export default function Home({ dataIleDeFrance }) {
       <CardHome>
         <FlexContainerHome>
           <Menu>
-            <br />
-            <GreyArrowLeft onClick={() => prevStep()}>
-              {" "}
-              &lt; Retour
-            </GreyArrowLeft>
-            <Text
-              css={{ textAlign: " center", margin: "2rem" }}
-              size="$md"
-              weight="bold"
-            >
-              <Text color="#ff4ecd" b>
-                Bonjour
+            <>
+              <FlexContainer>
+                <GreyArrowLeft onClick={() => prevStep()}>
+                  {" "}
+                  &lt; Retour
+                </GreyArrowLeft>
+                <Button auto size="xs" color="secondary" flat>
+                  Menu principal
+                </Button>
+                <GreyArrowLeft onClick={() => redirection()}>
+                  {" "}
+                  Vers toutes les villes &gt;
+                </GreyArrowLeft>
+              </FlexContainer>
+              <Text
+                css={{ textAlign: "center", margin: "2rem" }}
+                size="$md"
+                weight="bold"
+              >
+                <Text color="#ff4ecd" b>
+                  Bonjour{" "}
+                </Text>
+                {getName()}
               </Text>
-              {getName()}
-            </Text>
-            <Search dataIleDeFrance={dataIleDeFrance} />
-            {stepComponent[step]}
+              <Search dataIleDeFrance={dataIleDeFrance} />
+              {stepComponent[step]}{" "}
+            </>
           </Menu>
           <Maps dataIleDeFrance={dataIleDeFrance} />
         </FlexContainerHome>

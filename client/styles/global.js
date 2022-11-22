@@ -50,7 +50,7 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection || null};
   justify-content: ${({ justifyContent }) => justifyContent || "space-around"};
-  align-items: center;
+  align-items: flex-start;
   margin: ${({ margin }) => margin || "20px"};
   gap: 10px;
 `;
@@ -95,24 +95,20 @@ export const Select = styled.select`
 
 export const PinkArrowRight = styled.div`
   cursor: pointer;
-  font-size: 28px;
-  color: #6347d1;
+  color: #ff4ecd;
 `;
 
 export const PinkArrowLeft = styled.div`
   cursor: pointer;
-  font-size: 28px;
-  color: #6347d1;
+  color: #ff4ecd;
 `;
 
 export const GreyArrowRight = styled.div`
   cursor: pointer;
-  font-size: 28px;
   color: grey;
 `;
 export const GreyArrowLeft = styled.div`
   cursor: pointer;
-  font-size: 28px;
   color: grey;
 `;
 
@@ -129,7 +125,7 @@ export const CardHome = styled.div`
 `;
 
 export const Menu = styled.div`
-  width: 50%;
+  width: 30%;
   height: 100vh;
 `;
 
@@ -189,7 +185,17 @@ export const ContainerInformation = styled.p`
 export const FlexElementCard = styled.div`
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   margin-bottom: 0.5rem;
   gap: 5px;
+`;
+
+export const FlexElementInCart = styled.div`
+  display: flex;
+  margin: 10px 0;
+  flex-direction: column;
+  justify-content: center;
+  & > p {
+    margin: 0;
+  }
 `;

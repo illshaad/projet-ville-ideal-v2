@@ -14,6 +14,13 @@ const getInformationRatings = async () => {
   return response;
 };
 
+const getTotalRatingsByCity = async () => {
+  const { data } = await Axios.get(
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/ratings/getTotalRatingsCity`
+  ).catch((error) => error.response);
+  return data;
+};
+
 const getInformationRatingsPending = async () => {
   const response = await Axios.get(
     `${process.env.NEXT_PUBLIC_API_BACKEND}/ratings/pending`
@@ -65,4 +72,5 @@ export {
   getInformationRatings,
   updateStatus,
   getInformationRatingsPending,
+  getTotalRatingsByCity,
 };
