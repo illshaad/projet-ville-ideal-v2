@@ -8,8 +8,8 @@ import {
   CardHome,
   Menu,
   FlexContainerHome,
-  GreyArrowLeft,
   FlexContainer,
+  FadeInLeftDiv,
 } from "../../styles/global";
 import AddRating from "../../composants/avis/AddRating";
 import Snackbar from "../../composants/snackbar/Snackbar";
@@ -18,13 +18,13 @@ import { useRouter } from "next/router";
 
 export default function Home({ dataIleDeFrance }) {
   const router = useRouter();
-  const { response } = useDataCity();
+  const { response, selectCityInfoWindows, SetselectCityInfoWindows } =
+    useDataCity();
   const message = response?.data?.message;
   const status = response?.status;
   const [step, setStep] = useState(0);
 
   const redirection = () => router.push("/city");
-
   const nextStep = (step, data) => {
     setStep(step, data);
   };
@@ -45,40 +45,45 @@ export default function Home({ dataIleDeFrance }) {
 
   return (
     <>
-      <CardHome>
-        <FlexContainerHome>
-          <Menu>
-            <>
-              <FlexContainer>
-                <GreyArrowLeft onClick={() => prevStep()}>
-                  {" "}
-                  &lt; Retour
-                </GreyArrowLeft>
-                <Button auto size="xs" color="secondary" flat>
-                  Menu principal
-                </Button>
-                <GreyArrowLeft onClick={() => redirection()}>
-                  {" "}
-                  Vers toutes les villes &gt;
-                </GreyArrowLeft>
-              </FlexContainer>
-              <Text
-                css={{ textAlign: "center", margin: "2rem" }}
-                size="$md"
-                weight="bold"
-              >
-                <Text color="#ff4ecd" b>
-                  Bonjour{" "}
-                </Text>
-                {getName()}
+      <FadeInLeftDiv>
+        <CardHome>
+          <FlexContainer justifyContent="space-between" alignItems="center">
+            <Button
+              auto
+              size="xs"
+              color="secondary"
+              flat
+              onClick={() => prevStep()}
+            >
+              Retour
+            </Button>
+            <Button auto size="xs" color="secondary" flat>
+              Menu principal
+            </Button>
+            <Search dataIleDeFrance={dataIleDeFrance} />
+            <Button
+              auto
+              size="xs"
+              color="secondary"
+              flat
+              onClick={() => redirection()}
+            >
+              Vers toutes les villes
+            </Button>
+            <Text size="$sm" weight="bold">
+              <Text color="#ff4ecd" b>
+                Bonjour{" "}
               </Text>
-              <Search dataIleDeFrance={dataIleDeFrance} />
-              {stepComponent[step]}{" "}
-            </>
-          </Menu>
-          <Maps dataIleDeFrance={dataIleDeFrance} />
-        </FlexContainerHome>
-      </CardHome>
+              {getName()}
+            </Text>
+          </FlexContainer>
+
+          <FlexContainerHome>
+            {selectCityInfoWindows && <Menu>{stepComponent[step]}</Menu>}
+            <Maps dataIleDeFrance={dataIleDeFrance} />
+          </FlexContainerHome>
+        </CardHome>
+      </FadeInLeftDiv>
       {response && <Snackbar message={message} status={status} />}
     </>
   );

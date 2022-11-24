@@ -23,21 +23,20 @@ export default function Search({ dataIleDeFrance }) {
   };
 
   return (
-    <Container>
-      <Autocomplete
-        {...defaultProps}
-        id="auto-complete"
-        autoComplete
-        includeInputInList
-        onChange={(e, option) => setDinamiqueMarker(option)}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Rechercher votre ville"
-            variant="outlined"
-          />
-        )}
-      />
-    </Container>
+    <Autocomplete
+      style={{ width: "300px" }}
+      {...defaultProps}
+      id="auto-complete"
+      autoComplete
+      includeInputInList
+      onChange={(e, option) => setDinamiqueMarker(option)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Rechercher votre ville"
+          variant="outlined"
+        />
+      )}
+    />
   );
 }

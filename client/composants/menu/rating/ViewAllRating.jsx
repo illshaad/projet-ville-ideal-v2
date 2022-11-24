@@ -1,9 +1,9 @@
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import React, { useEffect } from "react";
 import { FlexElementCard, FlexElementInCart } from "../../../styles/global";
 import Popover from "../../popover/Popover";
 import { useDataCity } from "../../../context/context";
-import { Card, Text, Divider, Row, Button, Spacer } from "@nextui-org/react";
+import { Card, Text, Row, Button, Spacer } from "@nextui-org/react";
 import { getInformationRatings } from "../../../service/api";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -17,43 +17,68 @@ export default function ViewAllRating({ nextStep }) {
     );
   }, []);
 
-  const numberIcon = (nombre) => {
+  const numberIcon = (nombre, isTotalRating) => {
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const numberSlice = arr.slice(0, nombre);
     return numberSlice.map((e) => {
-      return <StarIcon color="secondary" fontSize="small" />;
+      return isTotalRating ? (
+        <StarIcon fontSize="medium" sx={{ color: "#ff4ecd" }} />
+      ) : (
+        <StarIcon color="secondary" fontSize="small" />
+      );
     });
   };
 
   return (
-    <Container css={{ marginTop: "2rem" }}>
+    <Container
+      css={{
+        marginTop: "2rem",
+      }}
+    >
       <FlexElementCard>
-        <Text weight="bold">
+        <Text color="#ff4ecd" weight="bold" size={22}>
           {selectCityInfoWindows && selectCityInfoWindows[0]?.nom}
         </Text>
-        <Text weight="bold">
+        <Text weight="bold" size={22}>
           {selectCityInfoWindows && selectCityInfoWindows[0]?.departement.nom}
         </Text>
       </FlexElementCard>
 
       {findUserNoteByCity?.map((e) => (
-        <>
+        <div>
           <Card hoverable>
-            <Text
-              color="secondary"
-              weight="bold"
-              css={{ textAlign: "center", padding: "1rem" }}
+            <div
+              style={{
+                padding: "1rem",
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
             >
-              Note générale - {e?.totalRating}/5
-            </Text>
-
-            <Divider color="primary" />
+              <Button disabled={true} size="sm">
+                Note Globale
+              </Button>
+              <div>{numberIcon(e?.totalRating, true)}</div>
+            </div>
+            <Divider />
             <Card.Body>
-              <div style={{ textAlign: "center" }}>
-                <Text color="#ff4ecd" b>
+              <div
+                style={{
+                  display: "flex",
+                  position: "absolute",
+                  bottom: "10px",
+                  right: "15px",
+                  alignItems: "center",
+                  gap: 5,
+                }}
+              >
+                <Text color="#ff4ecd" b size={12}>
                   Noter par
                 </Text>
-                <Text h2>{e.nameUser}</Text>
+
+                <Text size={12} b>
+                  {e.nameUser}
+                </Text>
               </div>
 
               <div
@@ -114,8 +139,8 @@ export default function ViewAllRating({ nextStep }) {
                 </div>
               </div>
             </Card.Body>
-            <Divider color="primary" />
-            <Card.Footer>
+
+            <Card.Footer css={{ backgroundColor: "#6851BD" }}>
               <Row justify="center">
                 <Button flat color="secondary" size="sm">
                   <Popover size="small" e={e} />
@@ -124,7 +149,7 @@ export default function ViewAllRating({ nextStep }) {
             </Card.Footer>
           </Card>
           <Spacer y={0.5} />
-        </>
+        </div>
       ))}
 
       {selectCityInfoWindows && (

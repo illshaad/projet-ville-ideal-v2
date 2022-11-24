@@ -62,7 +62,6 @@ export default function MapGoogle({ dataIleDeFrance }) {
                   lat: item.centre.coordinates[1],
                   lng: item.centre.coordinates[0],
                 };
-
                 return (
                   <Marker
                     key={index}

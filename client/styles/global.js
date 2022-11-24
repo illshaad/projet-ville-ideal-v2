@@ -1,4 +1,7 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { fadeInLeft } from "react-animations";
+
+const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
 
 export const ContainerMenu = styled.header`
   background-color: white;
@@ -50,9 +53,8 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection || null};
   justify-content: ${({ justifyContent }) => justifyContent || "space-around"};
-  align-items: flex-start;
+  align-items: ${({ alignItems }) => alignItems || " flex-start"};
   margin: ${({ margin }) => margin || "20px"};
-  gap: 10px;
 `;
 
 export const Card = styled.div`
@@ -113,10 +115,7 @@ export const GreyArrowLeft = styled.div`
 `;
 
 export const Header = styled.header`
-  /* width: auto; */
-  /* height: 80px; */
   background: #758ecd;
-  /* margin-top: -22px; */
 `;
 
 export const CardHome = styled.div`
@@ -127,6 +126,11 @@ export const CardHome = styled.div`
 export const Menu = styled.div`
   width: 30%;
   height: 100vh;
+  overflow-y: scroll;
+`;
+
+export const FadeInLeftDiv = styled.div`
+  animation: 2s ${fadeInLeftAnimation};
 `;
 
 export const H1 = styled.h1`
