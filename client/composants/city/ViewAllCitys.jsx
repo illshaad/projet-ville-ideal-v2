@@ -1,5 +1,12 @@
 import React, { useMemo } from "react";
-import { Dropdown, Text, Container, Card, Button } from "@nextui-org/react";
+import {
+  Dropdown,
+  Text,
+  Container,
+  Card,
+  Button,
+  Table,
+} from "@nextui-org/react";
 import { useRouter } from "next/router";
 
 export default function ViewAllCitys({ averageCity, setAverageCity }) {
@@ -42,7 +49,7 @@ export default function ViewAllCitys({ averageCity, setAverageCity }) {
         Top ville !
       </Text>
 
-      <Container sm>
+      <Container>
         <Card>
           <Card.Header
             css={{ display: "flex", justifyContent: "space-between" }}
@@ -75,18 +82,30 @@ export default function ViewAllCitys({ averageCity, setAverageCity }) {
             </Dropdown>
           </Card.Header>
           <Card.Body>
-            {averageCity?.map((e) => (
-              <div
-                style={{ display: "flex", justifyContent: "center", gap: 10 }}
-              >
-                <Text size={20} weight="bold">
-                  {e._id}
-                </Text>
-                <Text size={20} weight="bold" color="#ff4ecd">
-                  {e.totalRating}
-                </Text>
-              </div>
-            ))}
+            <Table
+              shadow={false}
+              color="secondary"
+              aria-label="Admin table"
+              css={{
+                height: "auto",
+                minWidth: "100%",
+              }}
+            >
+              <Table.Header>
+                <Table.Column>Ville</Table.Column>
+                <Table.Column>Note</Table.Column>
+                <Table.Column>Départements</Table.Column>
+              </Table.Header>
+              <Table.Body>
+                {averageCity?.map((e, index) => (
+                  <Table.Row key={index}>
+                    <Table.Cell> {e._id}</Table.Cell>
+                    <Table.Cell>{e.totalRating}</Table.Cell>
+                    <Table.Cell> {e.nameDepartement}</Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
           </Card.Body>
         </Card>
       </Container>

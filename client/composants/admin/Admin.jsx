@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Table } from "@nextui-org/react";
 import ModalAdmin from "./ModalAdmin";
 import { useDataCity } from "../../context/context";
