@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+
 import {
   Dropdown,
   Text,
@@ -11,10 +12,9 @@ import { useRouter } from "next/router";
 
 export default function ViewAllCitys({ averageCity, setAverageCity }) {
   const router = useRouter();
-
   const [selected, setSelected] = useState(new Set(["Filtre"]));
-  const redirection = () => router.push("/application");
 
+  const redirection = () => router.push("/application");
   const increasing = (a, b) => a.totalRating - b.totalRating;
   const decreasing = (a, b) => (a.totalRating > b.totalRating ? -1 : 1);
   const departement = (a, b) =>
