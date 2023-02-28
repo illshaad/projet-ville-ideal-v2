@@ -53,11 +53,8 @@ export default function Home({ dataIleDeFrance }) {
               size="xs"
               color="secondary"
               flat
-              onClick={() => prevStep()}
+              onClick={() => router.push("/selection")}
             >
-              Retour
-            </Button>
-            <Button auto size="xs" color="secondary" flat>
               Menu principal
             </Button>
             <Search dataIleDeFrance={dataIleDeFrance} />

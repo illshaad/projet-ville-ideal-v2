@@ -55,7 +55,7 @@ export default function ViewAllCitys({ averageCity, setAverageCity }) {
             css={{ display: "flex", justifyContent: "space-between" }}
           >
             <Button onPress={() => redirection()} size="sm" color="secondary">
-              Retour
+              Noter une ville
             </Button>
             <Dropdown>
               <Dropdown.Button flat size="sm" color="secondary">
