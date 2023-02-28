@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useState, useMemo } from "react";
+
 import {
   Dropdown,
   Text,
@@ -11,25 +12,30 @@ import { useRouter } from "next/router";
 
 export default function ViewAllCitys({ averageCity, setAverageCity }) {
   const router = useRouter();
+  const [selected, setSelected] = useState(new Set(["Filtre"]));
 
-  const [selected, setSelected] = React.useState(new Set(["Filtre"]));
   const redirection = () => router.push("/application");
-
   const increasing = (a, b) => a.totalRating - b.totalRating;
   const decreasing = (a, b) => (a.totalRating > b.totalRating ? -1 : 1);
   const departement = (a, b) =>
     a.nameDepartement.localeCompare(b.nameDepartement);
 
-  const sortedByIncreasing = () => {
-    setAverageCity(averageCity?.sort(increasing));
-  };
-
-  const sortedByDecreasing = () => {
-    setAverageCity(averageCity?.sort(decreasing));
-  };
-
-  const sortedByDepartement = () => {
-    setAverageCity(averageCity?.sort(departement));
+  const sort = (selected) => {
+    let sortFunction;
+    switch (selected.currentKey) {
+      case "Croissant":
+        sortFunction = increasing;
+        break;
+      case "Decroissant":
+        sortFunction = decreasing;
+        break;
+      case "Departement":
+        sortFunction = departement;
+        break;
+      default:
+        return;
+    }
+    setAverageCity(averageCity?.sort(sortFunction));
   };
 
   const selectedValue = useMemo(
@@ -66,13 +72,7 @@ export default function ViewAllCitys({ averageCity, setAverageCity }) {
                 color="secondary"
                 disallowEmptySelection
                 selectionMode="single"
-                selectedKeys={
-                  selected.currentKey === "Departement"
-                    ? sortedByDepartement()
-                    : selected.currentKey === "Croissant"
-                    ? sortedByIncreasing()
-                    : sortedByDecreasing()
-                }
+                selectedKeys={sort(selected)}
                 onSelectionChange={setSelected}
               >
                 <Dropdown.Item key="Croissant">Croissant</Dropdown.Item>
@@ -97,11 +97,11 @@ export default function ViewAllCitys({ averageCity, setAverageCity }) {
                 <Table.Column>Départements</Table.Column>
               </Table.Header>
               <Table.Body>
-                {averageCity?.map((e, index) => (
+                {averageCity?.map((city, index) => (
                   <Table.Row key={index}>
-                    <Table.Cell> {e._id}</Table.Cell>
-                    <Table.Cell>{e.totalRating}</Table.Cell>
-                    <Table.Cell> {e.nameDepartement}</Table.Cell>
+                    <Table.Cell> {city._id}</Table.Cell>
+                    <Table.Cell>{city.totalRating}</Table.Cell>
+                    <Table.Cell> {city.nameDepartement}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
