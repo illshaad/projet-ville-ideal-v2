@@ -1,21 +1,37 @@
 import { Container, Divider } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import { FlexElementCard, FlexElementInCart } from "../../../styles/global";
 import Popover from "../../popover/Popover";
 import { useDataCity } from "../../../context/context";
 import { Card, Text, Row, Button, Spacer } from "@nextui-org/react";
 import { getInformationRatings } from "../../../service/api";
 import StarIcon from "@mui/icons-material/Star";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 export default function ViewAllRating({ nextStep }) {
   const { selectCityInfoWindows, setDataInformation, findUserNoteByCity } =
     useDataCity();
+
+  const [countPositive, setCountPositive] = useState(0);
+  const [countNegative, setCountNegative] = useState(0);
 
   useEffect(() => {
     getInformationRatings().then((res) =>
       setDataInformation(res?.data.ratings)
     );
   }, []);
+
+  const functionPositive = () => {
+    setCountPositive((prev) => (!countPositive ? prev + 1 : prev - 1));
+    setCountNegative((prev) => 0);
+  };
+
+  const functionNegative = () => {
+    setCountNegative((prev) => (!countNegative ? prev + 1 : prev - 1));
+    setCountPositive((prev) => 0);
+  };
 
   const numberIcon = (nombre, isTotalRating) => {
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -49,7 +65,7 @@ export default function ViewAllRating({ nextStep }) {
           <Card hoverable>
             <div
               style={{
-                padding: "1rem",
+                padding: "10px",
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
@@ -66,6 +82,31 @@ export default function ViewAllRating({ nextStep }) {
                 style={{
                   display: "flex",
                   position: "absolute",
+                  bottom: "6px",
+                  alignItems: "center",
+                  gap: 5,
+                }}
+              >
+                <InsertEmoticonIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => functionPositive()}
+                  fontSize="small"
+                  color="success"
+                />
+                {countPositive}
+                <SentimentVeryDissatisfiedIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => functionNegative()}
+                  fontSize="small"
+                  color="error"
+                />
+                {countNegative}
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  position: "absolute",
                   bottom: "10px",
                   right: "15px",
                   alignItems: "center",
@@ -75,7 +116,6 @@ export default function ViewAllRating({ nextStep }) {
                 <Text color="#ff4ecd" b size={12}>
                   Noter par
                 </Text>
-
                 <Text size={12} b>
                   {e.nameUser}
                 </Text>
@@ -121,10 +161,6 @@ export default function ViewAllRating({ nextStep }) {
                     <Text>{numberIcon(e.culture)}</Text>
                   </FlexElementInCart>
                   <FlexElementInCart>
-                    <Text>Culture</Text>
-                    <Text>{numberIcon(e.culture)}</Text>
-                  </FlexElementInCart>
-                  <FlexElementInCart>
                     <Text>Securité</Text>
                     <Text>{numberIcon(e.security)}</Text>
                   </FlexElementInCart>
@@ -139,7 +175,6 @@ export default function ViewAllRating({ nextStep }) {
                 </div>
               </div>
             </Card.Body>
-
             <Card.Footer css={{ backgroundColor: "#6851BD" }}>
               <Row justify="center">
                 <Button flat color="secondary" size="sm">

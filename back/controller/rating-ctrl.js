@@ -1,5 +1,5 @@
 const Rating = require("../model/rating");
-
+const Opinion = require("../model/opinions");
 const createRating = async (req, res) => {
   try {
     const dataToFront = req.body;
@@ -39,10 +39,26 @@ const createRating = async (req, res) => {
 const getRatings = async (req, res) => {
   try {
     const ratings = await Rating.find({ status: "valide" });
-    const filterByName = ratings.filter((e) => e.nameCity === "Argenteuil");
-
-    console.log(filterByName, " Filter");
     res.status(200).json({ ratings });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send("oups erreur");
+  }
+};
+
+const addOpinion = async (req, res) => {
+  // Recois l'opinion avec id de la ville noté
+  //Recois l'opinion sous obj
+  // Recuperer la donnée de la ville en bdd/
+  // Ajouter  a la donnée de la ville un obj avec le nom de l utilisateur et lopinion
+
+  try {
+    const getRatingsById = await Rating.find({ _id: id });
+    const addOpinion = Rating.create({
+      ...getRatingsById,
+      Opinion,
+    });
+    res.status(200).json({ addOpinion });
   } catch (error) {
     console.log(error.message);
     res.status(400).send("oups erreur");
