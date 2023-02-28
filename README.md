@@ -1,11 +1,1 @@
-# projet-ville-ideal est en cours de progression...
-
-#BACKEND
-ce rendre sur le dossier Back
-
-npm install et npm start
-
-#FRONTEND
-ce rendre sur le dossier Client
-yarn install et yarn run dev
-
+![github c](https://user-images.githubusercontent.com/35958773/221837775-57e86411-d9df-416d-8f00-f71ce44fac20.png)
